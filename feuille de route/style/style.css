@@ -1,0 +1,335 @@
+/* =========================================
+   VARIABLES & THÈME LTDRS (COULEURS EXACTES)
+   ========================================= */
+:root {
+    --bg-color: #0b0f1a;           /* Fond sombre bleuté */
+    --card-bg: #161d2f;           /* Fond des cartes gris/bleu */
+    --primary-color: #f97316;     /* Orange LTDRS (Titres & Accents) */
+    --secondary-color: #4f46e5;   /* Bleu Indigo (Focus & Sélections) */
+    --primary-hover: #ea580c;
+    --accent-green: #22c55e;      /* Vert pour validation OK */
+    --accent-red: #ef4444;        /* Rouge pour erreurs/effacer */
+    --text-main: #f1f5f9;         /* Texte clair */
+    --text-muted: #94a3b8;        /* Texte secondaire */
+    --border-color: #2d3748;      /* Bordure sobre */
+    --input-bg: #0b0f1a;          /* Fond des champs identique au body */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    --radius: 12px;
+}
+
+/* =========================================
+   BASE & LAYOUT
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+}
+
+/* =========================================
+   CARTES (STYLE LTDRS AVEC BORDURE ORANGE)
+   ========================================= */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    /* Ajout de la bordure orange en bas comme sur tes images */
+    border-bottom: 3px solid var(--primary-color);
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.card-header {
+    background: rgba(249, 115, 22, 0.05); /* Glassmorphism teinté Orange */
+    padding: 18px 25px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-header h2 {
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* =========================================
+   FORMULAIRES (FOCUS BLEU INDIGO)
+   ========================================= */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color); /* Focus en Bleu Indigo Discord */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* =========================================
+   CHECKLIST TILES (TUILES ORANGE)
+   ========================================= */
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.check-tile input {
+    display: none;
+}
+
+.tile-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tile-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    filter: grayscale(100%);
+    transition: 0.3s;
+}
+
+.check-tile input:checked + .tile-content {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: var(--primary-color);
+}
+
+.check-tile input:checked + .tile-content .tile-icon {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* =========================================
+   SIGNATURE
+   ========================================= */
+.signature-container {
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 15px;
+    height: 180px;
+    overflow: hidden;
+}
+
+#signature-pad {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.signature-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #cbd5e1;
+    font-size: 1.8rem;
+    font-weight: 800;
+    pointer-events: none;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   BOUTONS ÉTAT (INDIGO & ORANGE)
+   ========================================= */
+button {
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.status-button {
+    flex: 1;
+    padding: 12px;
+    background: #1e293b;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+
+/* État OK devient Indigo au clic */
+#status-ok.active {
+    background: rgba(79, 70, 229, 0.15);
+    border-color: var(--secondary-color);
+    color: #ffffff;
+}
+
+/* État Réparation devient Orange au clic */
+#status-repair.active {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+#downloadBtn, #autoCompleteBtn {
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 12px 24px;
+    text-transform: uppercase;
+}
+
+#clear-signature {
+    background: var(--accent-red);
+    color: white;
+    padding: 8px 16px;
+}
+/* =========================================
+   FOOTER & BOUTONS (STYLE LTDRS)
+   ========================================= */
+.form-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111827; /* Fond sombre assorti */
+    border-top: 2px solid #f97316; /* Ligne orange de séparation */
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: center; /* Centre les boutons */
+    gap: 30px; /* CRÉE LA SÉPARATION ENTRE LES BOUTONS */
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Bouton Réinitialiser (Style Gris Sombre) */
+.btn-secondary {
+    background-color: #374151;
+    color: #ffffff;
+    border: 1px solid #4b5563;
+}
+
+.btn-secondary:hover {
+    background-color: #ef4444; /* Devient rouge au survol */
+    border-color: #ef4444;
+}
+
+/* Bouton Télécharger (Style Orange LTDRS) */
+.btn-primary {
+    background-color: #f97316;
+    color: #ffffff;
+    box-shadow: 0 4px 0px #c2410c; /* Effet de profondeur */
+}
+
+.btn-primary:hover {
+    background-color: #fb923c;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+/* Ajoute de l'espace en bas du formulaire pour ne pas que le footer cache le contenu */
+.main-content {
+    padding-bottom: 120px !important; /* Espace pour que le footer ne chevauche rien */
+}
+
+/* Espacement spécifique pour la section Signature */
+.signature-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Crée une séparation avant le footer */
+}
+
+/* Style du bouton Effacer pour qu'il soit bien visible */
+#clear-signature {
+    background: #ef4444; /* Rouge LTDRS */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+}
+
+#clear-signature:hover {
+    background: #dc2626;
+}
+
+/* Le footer doit avoir une bordure nette pour la séparation visuelle */
+.form-footer {
+    border-top: 2px solid #f97316; /* Ta ligne orange de séparation */
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5); /* Ombre pour donner de la profondeur */
+}
