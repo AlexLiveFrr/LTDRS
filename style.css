@@ -1,0 +1,148 @@
+/* --- CONFIGURATION TRANSPORT LTDRS MODE SOMBRE PERMANENT --- */
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --input-bg: #ffffff; /* Changé en blanc pour la visibilité du texte noir */
+    --primary-orange: #d34f2a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- CORRECTION DES FORMULAIRES (TEXTE NOIR) --- */
+input, textarea, select {
+    color: #000000 !important; /* Force le texte saisi en noir */
+    background-color: var(--input-bg) !important; /* Fond blanc pour les champs */
+    border: 2px solid #334155 !important;
+    padding: 12px !important;
+}
+
+/* Changement de couleur au clic pour le style TRANSPORT LTDRS */
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-orange) !important;
+    outline: none;
+}
+
+/* Style des labels pour qu'ils restent visibles en blanc */
+label {
+    color: var(--text-color) !important;
+    font-weight: bold;
+}
+
+/* --- NAVIGATION RESPONSIVE --- */
+nav .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    nav ul {
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+/* --- SECTIONS ET GRILLES --- */
+.bg-white, section.bg-white, .truck-card, form {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: #334155 !important;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-cols-mobile-stats {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* --- BOUTONS ET TEXTES --- */
+h1 { font-size: clamp(2rem, 8vw, 4rem); }
+
+.btn-euro {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-euro:hover { color: var(--primary-orange) !important; }
+
+footer {
+    background-color: #020617;
+    border-top: 1px solid #1e293b;
+    margin-top: auto;
+}
+
+/* --- MENU BURGER RÉPARÉ --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.menu-toggle span {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Style mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Affiche l'icône sur mobile */
+    }
+
+    #nav-links {
+        display: none; /* Cache le menu par défaut sur mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #0f172a;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 20px;
+        border-bottom: 3px solid var(--primary-orange);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+    }
+
+    /* Cette classe sera ajoutée par le JavaScript */
+    #nav-links.active {
+        display: flex !important;
+    }
+}
+.truck-card img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}

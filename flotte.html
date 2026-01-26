@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notre Flotte | TRANSPORT LTDRS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+</head>
+
+<body>
+    <nav class="bg-slate-900 p-4 sticky top-0 z-50 shadow-xl border-b border-orange-600">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="img/logo.png" alt="Logo Transport Ltdrs" class="h-10 md:h-12 w-auto">
+                <span class="text-white text-xl font-black italic uppercase">TRANSPORT<span class="text-orange-500">
+                        LTDRS</span></span>
+            </a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="flex items-center gap-6 text-white text-xs font-bold uppercase tracking-widest" id="nav-links">
+                <li><a href="index.html" class="hover:text-orange-500 transition">Accueil</a></li>
+                <li><a href="entreprise.html" class="hover:text-orange-500 transition">Entreprise</a></li>
+                <li><a href="pourquoinouschoisir.html" class="hover:text-orange-500 transition text-center">Pourquoi
+                        nous choisir ?</a></li>
+                <li><a href="reglement.html" class="hover:text-orange-500 transition">Règlement</a></li>
+                <li><a href="flotte.html" class="hover:text-orange-500 transition">Flotte</a></li>
+                <li><a href="contact.html"
+                        class="bg-orange-600 px-4 py-2 rounded hover:bg-orange-700 transition">Postuler</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
+    <main class="container mx-auto py-16 px-6">
+    <h2 class="text-4xl font-black mb-12 uppercase italic">Notre Matériel Professionnel</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+        
+        <div class="truck-card p-6 bg-white rounded-lg shadow-lg">
+            <div class="h-48 rounded mb-4 overflow-hidden">
+                <img src="scania.png" alt="Scania S" class="w-full h-full object-cover shadow-inner">
+            </div>
+            <h3 class="text-xl font-bold uppercase">Scania S Highline - 770 CV</h3>
+            <p class="opacity-70 mt-2">Le fleuron pour les longues distances.</p>
+        </div>
+
+        <div class="truck-card p-6 bg-white rounded-lg shadow-lg">
+            <div class="h-48 rounded mb-4 overflow-hidden">
+                <img src="volvo.png" alt="Volvo FH16" class="w-full h-full object-cover shadow-inner">
+            </div>
+            <h3 class="text-xl font-bold uppercase">Volvo FH16 - 750 CV</h3>
+            <p class="opacity-70 mt-2">Puissance brute pour convois exceptionnels.</p>
+        </div>
+
+        <div class="truck-card p-6 bg-white rounded-lg shadow-lg">
+            <div class="h-48 rounded mb-4 overflow-hidden">
+                <img src="man.png" alt="MAN TGX" class="w-full h-full object-cover shadow-inner">
+            </div>
+            <h3 class="text-xl font-bold uppercase">MAN TGX - 640 CV</h3>
+            <p class="opacity-70 mt-2">Idéal pour la distribution régionale.</p>
+        </div>
+
+    </div>
+</main>
+
+    <footer class="py-10 text-center border-t border-slate-800 mt-12">
+        <div class="container mx-auto px-6">
+            <img src="img/logo.png" alt="Logo" class="h-10 mx-auto mb-4 opacity-50">
+            <p class="text-gray-600 text-sm italic">"L'excellence sur chaque kilomètre - Transport Ltdrs"</p>
+        </div>
+    </footer>
+</body>
+
+</html>
