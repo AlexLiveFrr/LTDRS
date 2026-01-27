@@ -18,11 +18,11 @@ if (discordForm) {
     discordForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // URL de ton Webhook Discord (Ne pas changer si c'est la bonne)
+        // URL de ton Webhook Discord
         const webhookURL = "https://discord.com/api/webhooks/1465452078229885213/s2UViW5-iLpKJsnGhffl9DmqxtdGdQjQCF7nCQmQuy2ue65Jv7dExrs5mIcxCxr-m5q-";
 
         // 1. Récupération des valeurs du formulaire
-        const role = document.getElementById('role').value; // Le poste choisi (Chauffeur/Staff/Transitionnaire)
+        const role = document.getElementById('role').value;
         const acceptedRules = document.getElementById('accept_rules').checked;
         const pseudo = document.getElementById('username').value;
         const age = document.getElementById('age').value;
@@ -34,18 +34,22 @@ if (discordForm) {
         const availability = document.getElementById('availability').value || "Non précisé";
         const motivation = document.getElementById('motivation').value;
 
-        // Récupération des DLC cochées
+        // --- CORRECTION GESTION DLC (UN PAR LIGNE POUR DISCORD) ---
         let dlcList = [];
-        document.querySelectorAll('.dlc:checked').forEach((checkbox) => {
-            dlcList.push(checkbox.value);
+        // Utilisation de .dlc ou input[name="dlc"] selon ta classe HTML
+        document.querySelectorAll('input[name="dlc"]:checked, .dlc:checked').forEach((checkbox) => {
+            dlcList.push(`✅ ${checkbox.value}`);
         });
 
-        // 2. Construction du payload (le message qui sera affiché sur Discord)
+        const dlcFinal = dlcList.length > 0 ? dlcList.join("\n") : "❌ Aucune DLC map";
+        // ---------------------------------------------------------
+
+        // 2. Construction du payload
         const payload = {
             "embeds": [{
                 "title": "📑 Nouveau Dossier de Recrutement",
                 "description": `Une nouvelle candidature a été déposée pour le poste de **${role}**.`,
-                "color": 13848362, // Couleur Orange TRANSPORT LTDRS
+                "color": 13848362,
                 "fields": [
                     { "name": "🎯 Poste Visé", "value": `**${role}**`, "inline": false },
                     { "name": "👤 Candidat", "value": `**Pseudo:** ${pseudo}\n**Âge:** ${age} ans`, "inline": true },
@@ -54,7 +58,8 @@ if (discordForm) {
                     { "name": "🔗 Liens Utiles", "value": `**Steam:** ${steamId}\n**Trucky:** ${truckyId}`, "inline": false },
                     { "name": "📜 Règlement", "value": acceptedRules ? "✅ Lu et Accepté" : "❌ Non accepté", "inline": true },
                     { "name": "📅 Disponibilités", "value": availability, "inline": true },
-                    { "name": "🗺️ DLC Possédées", "value": dlcList.length > 0 ? "✅ " + dlcList.join(", ") : "❌ Aucune DLC map", "inline": false },
+                    // Affichage des DLC avec le nouveau format propre
+                    { "name": "🗺️ DLC Possédées", "value": `>>> ${dlcFinal}`, "inline": false },
                     { "name": "📝 Motivations", "value": "```" + (motivation || "Aucune motivation rédigée.") + "```", "inline": false }
                 ],
                 "footer": { "text": "TRANSPORT LTDRS Logistique - Système de Recrutement Web" },
@@ -70,7 +75,6 @@ if (discordForm) {
         })
         .then(res => {
             if (res.ok) {
-                // Remplacement du formulaire par un message de succès propre
                 discordForm.innerHTML = `
                     <div class="text-center py-10">
                         <div class="text-6xl mb-6">✅</div>
@@ -90,7 +94,7 @@ if (discordForm) {
                 `;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                alert("❌ Erreur lors de l'envoi du dossier. Vérifie ton Webhook.");
+                alert("❌ Erreur lors de l'envoi du dossier.");
             }
         })
         .catch(err => {
